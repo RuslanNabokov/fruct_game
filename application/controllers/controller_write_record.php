@@ -1,6 +1,8 @@
 <?php
 
 
+
+
    
 class Controller_write_record extends Controller
 {
@@ -14,6 +16,6 @@ class Controller_write_record extends Controller
  
 // WHERE  user_id =  ".$_POST['user_id']."
 		 $prev_record =  pg_query($dbconn3,"SELECT  MAX(record) FROM public.records  ");
-		 echo json_encode(array('prev_record' =>   $prev_record,  ));
+		 echo json_encode(array('prev_record' =>   '2' ));
 	}
 }
