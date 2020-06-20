@@ -1,0 +1,11 @@
+{
+    "require": {
+     
+           "doctrine/orm": "*",
+        "doctrine/doctrine-bundle": "*",
+        "doctrine/doctrine-migrations-bundle": "*"
+    },
+    "autoload": {
+        "psr-0": {"": "src/"}
+    }
+}
