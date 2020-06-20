@@ -107,8 +107,9 @@ var input =  new CanvasInput({
 		  y: height/2 - 20 ,
 		});           //Создаем инпут в  канвасе 
  		
-*/      var result =score 
-		var  text   =  parseInt(result)  > parseInt(pref_record)  ?  "У вас новый рекорд " + result  :  "Ваш результат:"  +   result + " До рекорда осталось:" +  pref_record - result;
+*/     alert(pref_record)
+		var result =parseInt(score) 
+		var  text   =  parseInt(result)  > parseInt(pref_record)  ?  "У вас новый рекорд " + result  :  "Ваш результат:"  +   parseInt(result) + " До рекорда осталось:" +  parseInt(pref_record) - score; 
  		ctx.font = '52px Arial';                             // Название
 		ctx.fillStyle = '#556B2F';
 		ctx.font = '190px Times New Roman';    // Спрашиваем имя
@@ -398,23 +399,15 @@ if (time != 0  && !pause){
             success: function(response)
 
             {
-            	response = response
+ 
                 var jsonData = JSON.parse(response);
-                if (jsonData.success == "1")
-                {
-                	alert(12);
-                 
-                }
-                else
-                {
-                    alert('Произошла ошибка ');
-
-                }
+                console.log(response);
+               end_game(response['prev_record']);
 
 					pause = true
 			
 					alert(223)
-                 end_game(response['prev_record'])
+                 
            }
        });
 
