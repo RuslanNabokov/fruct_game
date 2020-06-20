@@ -1,8 +1,21 @@
+<?php
+
+
+session_start();
 
 
 
+$name_gamer = $_SESSION['user_login'];
 
+$name_id = $_SESSION['user_id'];
+if(empty($_SESSION['user_login'])){
+header("Location: http://127.0.0.1/autorization");
+}else{
+  echo $_SESSION['user_login'];
 
+}
+  
+?>
 
 
 <div class="container-fluid">
@@ -19,11 +32,14 @@
 <script src="lib/victor-1.1.0/index.js"></script>
 
 <script src =  "lib/CanvasInput-master/CanvasInput.min.js"></script>
-<script src="js/1.js"></script>
+
 
 <script type="text/javascript">
 
    (function() {
+
+  window.name_gamer = '<?php  echo $name_gamer; ?>'; 
+    window.id_gamer = '<?php  echo $name_id; ?>'; 
     var canvas = document.getElementById('myCanvas'),
             context = canvas.getContext('2d');
 
@@ -47,5 +63,10 @@
     }
 })();
 
+
+
+
 </script>
 
+
+<script src="js/1.js"></script>

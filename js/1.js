@@ -1,5 +1,6 @@
 window.onload = function (){ 
 
+
 var width = $('#myCanvas').width()
 	height =  $('#myCanvas').height()
 cvs = document.getElementById("myCanvas");
@@ -7,7 +8,7 @@ ctx = cvs.getContext("2d");
 
 var fructs = [{name: 'apple', img: 'img/img/apple_PNG12484.png'}, {name: 'limon', img: 'img/img/limon.png'}, {name: 'banan', img: 'img/img/banan.png', size: 40}, {name:'klubnika', img: 'img/img/fr.png', size: 40}, {name: "mango", img: 'img/img/mango1.png'}]  // массив с оюбьектами определяющими  фрукты
 
-
+alert(window.name_gamer )
 function randomc(max, min ){
 		return Math.floor(Math.random() * (max - min )) + min;
 	}
@@ -29,18 +30,18 @@ menu_img.src = "img/img/bc_munu.jpg";
 
 	menu_img.onload = function() {
 		ctx.drawImage(menu_img, 0, 0);
-
+/*
 var input =  new CanvasInput({
 		  canvas: document.getElementById('myCanvas'),  //Создаем инпут в  канвасе 
 		  fontSize: 18,
 		  fontFamily: 'Andale Mono',
 		  fontColor: 'blue',                   
 		  fontWeight: '900',
-		  width: 300,
-		  padding: 20,
-		  borderWidth: 1,
+		  width: 0,
+		  padding: 0,
+		  borderWidth: 0,
 		  borderColor: '#00',
-		  borderRadius: 3,
+		  borderRadius: 0,
 		  boxShadow: '1px 1px 0px #ff',
 		  innerShadow: '0px 0px 5px rgba(0, 32, 12, 0.5)',
 		  placeHolder: 'Писать сюда',
@@ -48,15 +49,18 @@ var input =  new CanvasInput({
 		  y: height/2 - 20 ,
 		});           //Создаем инпут в  канвасе 
  
+*/
+
+
 		ctx.font = '52px Arial';                             // Название
 		ctx.fillStyle = '#556B2F';
-		ctx.fillText('Фруктовый мир', input.x() -15, 40);   // Название
-		ctx.font = '22px Times New Roman';    // Спрашиваем имя
+		ctx.fillText('Фруктовый мир', width/2, height/2)   // Название
+		ctx.font = '90px Times New Roman';    // Спрашиваем имя
 		ctx.fillStyle = '#00f';
-		ctx.fillText('Как тебя зовут?', input.x() + 100, input.y()   - 10); // Спрашиваем имя
+		ctx.fillText(' Ты готов?', width/2, height/2 + 130 ); // Спрашиваем имя
 		ctx.font = '40px Times New Roman';   // Просим нажать enter
 		ctx.fillStyle = '#4B0082';
-		ctx.fillText('Нажми  enter', input.x() + 60 , input.y()   + 110);  // Просим нажать enter
+		ctx.fillText('Нажми  enter',width/2, height/2 + 430);  // Просим нажать enter
 
 	document.onkeydown = function checkKeycode(event)
 	{
@@ -65,7 +69,7 @@ var input =  new CanvasInput({
 		if (event.keyCode) keycode = event.keyCode; // для IE
 		else if(event.which) keycode = event.which; // для всех браузеров
 		if(keycode == 13 && Flag_m){                                      /// Если нажали enter  с провркой активности меню 
-			s_game(); Flag_m = false;
+			s_game(); Flag_m = false; window.start = new Date().getTime();
 		}
 	}
 	};
@@ -73,6 +77,66 @@ var input =  new CanvasInput({
 
 
 } 	//  #####################################################################################   Заканчиваем рисовать меню 
+	
+
+
+
+function end_game(pref_record){ //  ##################################################################################### Рисуем меню
+var Flag_m = true 
+menu_img = new Image();
+menu_img.src = "img/img/bc_munu.jpg";
+
+	menu_img.onload = function() {
+		ctx.drawImage(menu_img, 0, 0);
+/*
+var input =  new CanvasInput({
+		  canvas: document.getElementById('myCanvas'),  //Создаем инпут в  канвасе 
+		  fontSize: 18,
+		  fontFamily: 'Andale Mono',
+		  fontColor: 'blue',                   
+		  fontWeight: '900',
+		  width: 0,
+		  padding: 0,
+		  borderWidth: 0,
+		  borderColor: '#00',
+		  borderRadius: 0,
+		  boxShadow: '1px 1px 0px #ff',
+		  innerShadow: '0px 0px 5px rgba(0, 32, 12, 0.5)',
+		  placeHolder: 'Писать сюда',
+		  x: width/2 - 150,
+		  y: height/2 - 20 ,
+		});           //Создаем инпут в  канвасе 
+ 		
+*/      var result =score 
+		var  text   =  parseInt(result)  > parseInt(pref_record)  ?  "У вас новый рекорд " + result  :  "Ваш результат:"  +   result + " До рекорда осталось:" +  pref_record - result;
+ 		ctx.font = '52px Arial';                             // Название
+		ctx.fillStyle = '#556B2F';
+		ctx.font = '190px Times New Roman';    // Спрашиваем имя
+		ctx.fillStyle = '#03f';
+		ctx.fillText(text, width/2, height/2  ); // Спрашиваем имя
+
+
+	};
+
+
+
+}; 	//  #####################################################################################   Заканчиваем рисовать меню 
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 var noscore = new Set()
@@ -81,7 +145,7 @@ var  st_time = {}
 
 var pause = false;
 fruct_Search = '';
-time = 20;
+time = 5;
 score = 0;
 var time_bonus = randomc(1,time-7); // рандомно выбираем секунду на которой выпадет бонусный фрукт
 
@@ -89,11 +153,53 @@ var flag_bonus = false;
 vec_score = new Victor(width -50 , height -50);  //  Используем модуль Victor  для работы с векторами
 var timec // 
 var  timerv  = function(a){m = Math.floor(a/60);s =  a % 60; var s_t = setInterval(function(){
-if(pause){}else{
+if(pause ||  m + s == 0 ){
+	  if( m + s == 0){
+	  	clearInterval(this)
+	  	clearInterval(b_f)
+		clearInterval(minf)
+/*	  	  $.ajax({
+            type: "POST",
+            url: 'write_record',
+            data: $(this).serialize(),
+            success: function(response)
+
+            {
+            	console.log(response)
+                var jsonData = JSON.parse(response);
+ 
+                // user is logged in successfully in the back-end
+                // let's redirect
+                if (jsonData.success == "1")
+                {
+                   alert(1)
+                }
+                else
+                {
+                    alert('Invalid Credentials!');
+                }
+           }
+       });
+*/
+
+
+
+//ajax запрос  для  внесения рекорда  
+
+	  }else{
+
+	  }
+}else{
 if(flag_bonus){s=+20; flag_bonus = false}
+
+
+
 if(m + s != 0){ if(s > 0){s--; timec = {'m':m, 's':s};
 }else{
+
 m--; s = 59;  timec = {'m':m, 's':s} }
+
+
  }else{ clearInterval(s_t); }  }}, 1000 )} // таймер 
 
 timerv(time)
@@ -169,6 +275,7 @@ noscore  = new Set();
 
 
 function draw() {
+
 x++ // кадры
 
 score = (set.size * 10) - (noscore.size * 10);
@@ -281,6 +388,38 @@ if(flag_bonus){
 
 if (time != 0  && !pause){
 	 requestAnimationFrame(draw);
+}else{
+	window.ende = new Date().getTime(); 
+
+	  	  $.ajax({
+            type: "POST",
+            url: 'write_record',
+            data: {"user_id": parseInt(window.id_gamer), "record": parseInt( score)},
+            success: function(response)
+
+            {
+            	response = response
+                var jsonData = JSON.parse(response);
+                if (jsonData.success == "1")
+                {
+                	alert(12);
+                 
+                }
+                else
+                {
+                    alert('Произошла ошибка ');
+
+                }
+
+					pause = true
+			
+					alert(223)
+                 end_game(response['prev_record'])
+           }
+       });
+
+
+	
 }
 
 

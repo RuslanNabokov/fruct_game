@@ -1,55 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>Fruct Game/title>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 3.0 License
 
-    <script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
+Name       : Accumen
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20120712
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
-
-  
-</head>
-<body>
-
+Modified by VitalySwipe
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head> 	
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<title>Game center</title>
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
+		<link href="http://fonts.googleapis.com/css?family=Kreon" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="/css/game.css" />
 		<script src="/js/jquery-1.6.2.js" type="text/javascript"></script>
 		<script type="text/javascript">
+		// return a random integer between 0 and number
+		function random(number) {
+			
+			return Math.floor( Math.random()*(number+1) );
+		};
+		
+
 		</script>
 	</head>
 	<body>
-				<div id="main ">
+			<div id="page">
 
-        <ul class="nav justify-content-center">
-  <li class="nav-item">
-    <a class="nav-link active" href="#">Active</a>
-  </li>
-
-<!--   <li class="nav-item">
-  <a class="nav-link" href="#">Link</a>
-</li>
- <li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Separated link</a>
-  </div>
-</li>
-<li class="nav-item">
-  <a class="nav-link disabled" href="#">Disabled</a>
-</li> -->
-</ul>
-
-
-		
-				<div id="content" style="width: 100%;  padding: 0px; margin:  0px;">
+				<div id="content">
+					<div class="box">
 						<?php include 'application/views/'.$content_view; ?>
 						<!--
 						<h2>Welcome to Accumen</h2>
@@ -59,11 +46,10 @@
 						</p>
 						-->
 					</div>
-		
-				</div>
-			</div>
-		
-		</div>
+
+
+	</div>
+</div>
 
 	</body>
 </html>
