@@ -1,27 +1,29 @@
 <?php
 
 
-session_start();
+
+
+
+//$name_gamer = $_SESSION['user_login'];
+//$name_id = $_SESSION['user_id'];
+if(empty($_SESSION['user_login'])){
+header("Location: /autorization");
+}else{
+
+}
 
 
 
 $name_gamer = $_SESSION['user_login'];
-
 $name_id = $_SESSION['user_id'];
-if(empty($_SESSION['user_login'])){
-header("Location: http://fruct_game/autorization");
-}else{
-  echo $_SESSION['user_login'];
 
-}
-  
+
 ?>
 
 
-<div class="container-fluid">
+
     <canvas id="myCanvas" width="790" height="640"></canvas>
 
-</div>
 
 
 
@@ -37,7 +39,7 @@ header("Location: http://fruct_game/autorization");
 <script type="text/javascript">
 
    (function() {
-alert(1)
+
   window.name_gamer = '<?php  echo $name_gamer; ?>'; 
     window.id_gamer = '<?php  echo $name_id; ?>'; 
     var canvas = document.getElementById('myCanvas'),

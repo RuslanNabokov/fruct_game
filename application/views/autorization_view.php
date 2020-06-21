@@ -4,10 +4,10 @@
        // mysql_query('SET character_set_database = utf8'); 
      //   mysql_query ("SET NAMES 'utf8'");
 	$dbconn3 = pg_connect("host=localhost port=5432 dbname=game_center user=postgres");
-
+$err = '';
         error_reporting(E_ALL); 
         ini_set("display_errors", 1);
-        session_start();//не забываем во всех файлах писать session_start
+        // не забываем во всех файлах писать session_start
    if (isset($_POST['login']) && isset($_POST['password'])){
     //немного профильтруем логин
         $login =pg_escape_string(htmlspecialchars($_POST['login']));
@@ -32,13 +32,18 @@
    }
     else {
         //если пользователя нет, то пусть пробует еще
-                header("Location: mylogin.html"); 
+
+                     if ($_POST['login']){
+               $err =  "Неверное имя пользователя или пароль";
+             }else{
+              $err = "";
+             }
     }
    }
    //проверяем сессию, если она есть, то значит уже авторизовались
    if (isset($_SESSION['user_id'])){
-        echo htmlspecialchars($_SESSION['user_login'])." <br />"."Вы авторизованы <br />
-        Т.е. мы проверили сессию и можем открыть доступ к определенным данным";
+header("Location: /");
+
    } else {
         $login = '';
         //проверяем куку, может он уже заходил сюда
@@ -47,12 +52,37 @@
         }
         //простая формочка action="mylogin.html"
         print <<<      html
-   <form  method="POST">
-                Логин <input name="login" type="text" value = $login><br>
-                Пароль <input name="password" type="password"><br>
-                <input name="submit" type="submit" value="Войти">
-        </form>
+          <div class="form">
+          <form class="form-horizontal" role="form" method="POST">
+          <h3>Авторизация </h3>
+          <div class="form-group">
+            <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Логин</label>
+            <div class="col-sm-10">
+
+              <input name="login" class="form-control"  name="login"  placeholder="Логин"    type="text" value = $login><br>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">Пароль</label>
+            <div class="col-sm-10">
+              <input type="password" type="password" class="form-control" placeholder="Пароль" name="password">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default btn-sm">Войти</button>
+            </div>
+          </div>  
+          </form>
+          </div><!-- form  -->
+          $err 
+
+
+
    html;
 
    }
+
    ?>

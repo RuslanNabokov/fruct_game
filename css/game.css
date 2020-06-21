@@ -12,3 +12,65 @@
     .container-fluid{
     	margin: 0px;
     }
+
+
+
+
+
+
+body{
+  background-image: url('../img/img/main_bc.jpg') ;
+}
+
+
+
+    .form form {
+  width: 300px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+
+
+.form-group{
+	margin: 20px;
+	margin-left: 10%;
+
+}
+
+.fixed-top{
+	position: relative;
+
+}
+h3{
+  padding-left: 19%;
+}
+
+.form-horizontal{
+background-color: rgba(259,96,67,0.2);
+
+justify-content: center;
+margin-top: 10% !important;
+
+}
+
+.navbar{
+ background:#8A2BE2;
+}
+.nav-link , .navbar-brand{
+ color: rgba(46,122,198,0.8);;
+ cursor: pointer;
+}
+.nav-link{
+ margin-right: 1em !important;
+}
+.nav-link:hover{
+ background: #f4f4f4;
+ color: #f97300;
+}
+.navbar-collapse{
+ justify-content: flex-end;
+}
+.navbar-toggler{
+  background:#fff !important;
+}

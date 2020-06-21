@@ -17,11 +17,13 @@ Modified by VitalySwipe
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<title>Game center</title>
+				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
 		<link href="http://fonts.googleapis.com/css?family=Kreon" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="/css/game.css" />
 		<script src="/js/jquery-1.6.2.js" type="text/javascript"></script>
+
 		<script type="text/javascript">
 		// return a random integer between 0 and number
 		function random(number) {
@@ -33,9 +35,38 @@ Modified by VitalySwipe
 		</script>
 	</head>
 	<body>
+<nav class="navbar navbar-expand-lg fixed-top ">
+   <a class="navbar-brand" href="#"> Домашняя</a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+   </button>
+<div class="collapse navbar-collapse " id="navbarSupportedContent">
+     <ul class="navbar-nav mr-4">
+       
+       
+       	<?php
+
+session_start();
+       	if(empty($_SESSION['user_login'])){
+
+    echo  '  <li class="nav-item">   <a class="nav-link" href="/autorization">Войти</a> </li> <li> <a class="nav-link" href="/registration">Регистрация</a>' ;
+
+
+     }else{
+      echo ' <li class="nav-item"> <a class="nav-link " href="/logout">Выйти</a>  </li>';
+ }  ?>
+
+      
+
+        
+     </ul>
+     
+   </div>
+</nav>
+
+
 			<div id="page">
 
-				<div id="content">
 					<div class="box">
 						<?php include 'application/views/'.$content_view; ?>
 						<!--
@@ -48,7 +79,7 @@ Modified by VitalySwipe
 					</div>
 
 
-	</div>
+	
 </div>
 
 	</body>
