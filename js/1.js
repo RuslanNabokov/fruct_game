@@ -400,14 +400,8 @@ if (time != 0  && !pause){
 
             {
  
-                var jsonData = JSON.parse(response);
-                console.log(response);
-               end_game(response['prev_record']);
-
-					pause = true
-			
-					alert(223)
-                 
+                
+                 location.assign('/records')
            }
        });
 
@@ -429,3 +423,7 @@ menu()
 
 
 
+
+    $('.del').on('click', function(a){
+              console.log(a)
+      } )
