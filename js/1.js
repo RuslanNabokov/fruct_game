@@ -81,52 +81,6 @@ var input =  new CanvasInput({
 
 
 
-function end_game(pref_record){ //  ##################################################################################### Рисуем меню
-var Flag_m = true 
-menu_img = new Image();
-menu_img.src = "img/img/bc_munu.jpg";
-
-	menu_img.onload = function() {
-		ctx.drawImage(menu_img, 0, 0);
-/*
-var input =  new CanvasInput({
-		  canvas: document.getElementById('myCanvas'),  //Создаем инпут в  канвасе 
-		  fontSize: 18,
-		  fontFamily: 'Andale Mono',
-		  fontColor: 'blue',                   
-		  fontWeight: '900',
-		  width: 0,
-		  padding: 0,
-		  borderWidth: 0,
-		  borderColor: '#00',
-		  borderRadius: 0,
-		  boxShadow: '1px 1px 0px #ff',
-		  innerShadow: '0px 0px 5px rgba(0, 32, 12, 0.5)',
-		  placeHolder: 'Писать сюда',
-		  x: width/2 - 150,
-		  y: height/2 - 20 ,
-		});           //Создаем инпут в  канвасе 
- 		
-*/     alert(pref_record)
-		var result =parseInt(score) 
-		var  text   =  parseInt(result)  > parseInt(pref_record)  ?  "У вас новый рекорд " + result  :  "Ваш результат:"  +   parseInt(result) + " До рекорда осталось:" +  parseInt(pref_record) - score; 
- 		ctx.font = '52px Arial';                             // Название
-		ctx.fillStyle = '#556B2F';
-		ctx.font = '190px Times New Roman';    // Спрашиваем имя
-		ctx.fillStyle = '#03f';
-		ctx.fillText(text, width/2, height/2  ); // Спрашиваем имя
-
-
-	};
-
-
-
-}; 	//  #####################################################################################   Заканчиваем рисовать меню 
-	
-
-
-
-
 
 
 
@@ -146,7 +100,7 @@ var  st_time = {}
 
 var pause = false;
 fruct_Search = '';
-time = 5;
+time = 55;
 score = 0;
 var time_bonus = randomc(1,time-7); // рандомно выбираем секунду на которой выпадет бонусный фрукт
 
@@ -232,14 +186,14 @@ cvs.onclick = function(e) {  //  ###############################################
   y = e.clientY - cvs.getBoundingClientRect().top;
 	fr.forEach(function(item, i, arr) {
 
-  	if  ( rX(item.positionX, x,  item.widthc + 20  ) && rX(item.positionY, y,   item.widthc + 20  ) ){
+  	if  ( rX(item.positionX, x,  item.widthc) && rX(item.positionY, y,   item.widthc   ) ){
 			  fr[i].speed = 0;
 			/*  fr[i].vector =  new Victor(fr[i].positionX, fr[i].positionY)*/
               out.push(fr[i]);
 			  fr[i] = new Fruct();
 
 		}else{
-			if (rX(width -40, x, 130) && rX(20, y, 135)){
+			if (rX(width -5, x, 5) && rX(2, y, 5)){
 				 pause = !pause;
 				 pausef()
 				 x = 0; y = 0;
@@ -313,9 +267,9 @@ if (item.obj != fruct_Search.obj){
 
 	});
 
-
-while  (fr < 8){
-	for (var i = 0 ; i <= 7; i++)
+// napolnenie karti 
+while  (fr < 70){
+	for (var i = 0 ; i <= 70; i++)
 	{ 
 				fr.push( new Fruct() )
 	}
@@ -347,11 +301,12 @@ fr.forEach(function(item, i, arr) {  // #######################  функция 
 
 			if (  obj.positionY > 30 &&  ( rX(obj.positionX, item.positionX, 50)  &&  rX(obj.positionY, item.positionY, 50))  ) {   
 				if(obj.positionX - item.positionX > 0){
-					obj.positionX += 1.4
-					item.positionY -= 1.4
+					obj.positionX += 0.9
+					item.positionY -= 0.9
+
 				}else{
-						obj.positionX -= 1.4
-					item.positionY += 1.4
+						obj.positionX -= 0.9
+					item.positionY += 0.9
 				}
  				
 			}else{}
