@@ -29,7 +29,7 @@ menu_img = new Image();
 menu_img.src = "img/img/bc_munu.jpg";
 
 	menu_img.onload = function() {
-		ctx.drawImage(menu_img, 0, 0);
+ctx.drawImage(menu_img,(width - width /2) - menu_img.width /2 ,(height - height /2) - menu_img.height /2 );
 /*
 var input =  new CanvasInput({
 		  canvas: document.getElementById('myCanvas'),  //Создаем инпут в  канвасе 
