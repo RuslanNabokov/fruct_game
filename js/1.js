@@ -15,8 +15,9 @@ function randomc(max, min ){
 
 var x  = 0
 class Fruct  { //  ##########################################################  класс генерирующий  игровые обьекты 
-  constructor() {   // конструктор экземпляра класса 
-  	this.obj = fructs[randomc(fructs.length, 0)];this.name = this.obj.name ;this.speed = randomc(150, 70)  / 15;
+  constructor(typ) {   // конструктор экземпляра класса 
+  	this.obj = typ ?  fructs[typ] : fructs[randomc(fructs.length, 0)] ;
+  	this.name = this.obj.name ;this.speed = randomc(180, 70)  / 15;
     this.fr = new Image();this.fr.src =  this.obj.img; this.widthc =  this.obj.size ||   47
     this.heightc = this.obj.size ||   47; this.positionX  =  randomc(width - 155,  4 );
     this.positionY = -15; this.vector = new Victor(this.positionX, this.positionY)
@@ -26,10 +27,11 @@ class Fruct  { //  ##########################################################  �
 function menu(){ //  ##################################################################################### Рисуем меню
 var Flag_m = true 
 menu_img = new Image();
-menu_img.src = "img/img/bc_munu.jpg";
+menu_img.src = "img/img/bc.jpg";
+
 
 	menu_img.onload = function() {
-ctx.drawImage(menu_img,(width - width /2) - menu_img.width /2 ,(height - height /2) - menu_img.height /2 );
+//ctx.drawImage(menu_img,(width - width /2) - menu_img.width /2 ,(height - height /2) - menu_img.height /2 );
 /*
 var input =  new CanvasInput({
 		  canvas: document.getElementById('myCanvas'),  //Создаем инпут в  канвасе 
@@ -48,8 +50,7 @@ var input =  new CanvasInput({
 		  x: width/2 - 150,
 		  y: height/2 - 20 ,
 		});           //Создаем инпут в  канвасе 
- 
-*/
+
 
 
 		ctx.font = '52px Arial';                             // Название
@@ -62,6 +63,8 @@ var input =  new CanvasInput({
 		ctx.fillStyle = '#4B0082';
 		ctx.fillText('Нажми  enter',width/2, height/2 + 430);  // Просим нажать enter
 
+*/
+
 	document.onkeydown = function checkKeycode(event)
 	{
 		var keycode;
@@ -69,7 +72,11 @@ var input =  new CanvasInput({
 		if (event.keyCode) keycode = event.keyCode; // для IE
 		else if(event.which) keycode = event.which; // для всех браузеров
 		if(keycode == 13 && Flag_m){                                      /// Если нажали enter  с провркой активности меню 
+			$('.center').text('Приятной игры');
 			s_game(); Flag_m = false; window.start = new Date().getTime();
+			setTimeout(() => $('.center').hide('slow'), 300);
+			
+
 		}
 	}
 	};
@@ -175,6 +182,8 @@ function pausef(){
 
 	}
 }
+
+
 var fr = []
 out  = []  // пойманые фрукты
 function rX(a,b, r){  //  ##########################################################  Функция  для отслеживания столкновений  по x и y 
@@ -184,13 +193,15 @@ return  ((( a - b  < r && a - b > 0)  || (b - a < r && b - a > 0 ) ))
 cvs.onclick = function(e) {  //  ##########################################################  Функция  обробатывает действия мыши
   x = e.clientX - cvs.getBoundingClientRect().left; // 
   y = e.clientY - cvs.getBoundingClientRect().top;
+	console.log(fr)
 	fr.forEach(function(item, i, arr) {
 
   	if  ( rX(item.positionX, x,  item.widthc) && rX(item.positionY, y,   item.widthc   ) ){
+
 			  fr[i].speed = 0;
 			/*  fr[i].vector =  new Victor(fr[i].positionX, fr[i].positionY)*/
               out.push(fr[i]);
-			  fr[i] = new Fruct();
+			  fr[i] = new Fruct()
 
 		}else{
 			if (rX(width -5, x, 5) && rX(2, y, 5)){
@@ -205,8 +216,8 @@ cvs.onclick = function(e) {  //  ###############################################
 
 function b_fruct(){  // ##########################################################  Функция  рандомно генерирует цель(фрукт)
 			fruct_Search = new Fruct()
-			fruct_Search.positionX = width -80
-			fruct_Search.positionY = height - 90
+			fruct_Search.positionX = width - 140
+			fruct_Search.positionY = height - 140
 			fruct_Search.widthc = 85
 			fruct_Search.heightc = 85
 			out = []
@@ -253,13 +264,13 @@ if (item.obj != fruct_Search.obj){
 }else{	
 	set.add(item)
 	if (i > 5){              //  ЦЦ 
-		item.positionX = pos.x + (i - 12)
-		item.positionY = pos.y + 2
+		item.positionX = pos.x - 7 + i
+		item.positionY = pos.y + 8
 	
 
 	}else{
-	item.positionX = (pos.x + i) - 3
-	item.positionY = pos.y
+	item.positionX = (pos.x + i) - 10
+	item.positionY = pos.y - 10
 	
 
 	} 
@@ -376,9 +387,3 @@ menu()
 
 }
 
-
-
-
-    $('.del').on('click', function(a){
-              console.log(a)
-      } )

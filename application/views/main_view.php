@@ -14,22 +14,26 @@ header("Location: /autorization");
 
 
 
-$name_gamer = $_SESSION['user_login'];
-$name_id = $_SESSION['user_id'];
+$name_gamer = 'evgen';  //$_SESSION['user_login'];
+$name_id = 'll';  //$_SESSION['user_id'];
 
 
 ?>
 
 
 
-    <canvas id="myCanvas" width="790" height="640"></canvas>
+ <h1 class="center" style="z-index: 99999"> Нажми Enter </h1>
+
+    <canvas id="myCanvas" style="position:relative;" width="790" height="640">
+     
+    </canvas>
 
 
 
 
 
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/game.css">
 
 <script src="lib/victor-1.1.0/index.js"></script>
 
@@ -49,8 +53,8 @@ $name_id = $_SESSION['user_id'];
     window.addEventListener('resize', resizeCanvas, false);
 
     function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            canvas.width = window.innerWidth - 40;
+            canvas.height = window.innerHeight - 50;
 
             /**
              * Your drawings need to be inside this function otherwise they will be reset when 
