@@ -6,11 +6,13 @@ $('.del').click(function (a) {
  	  $.ajax({
             type: "POST",
             url: 'del_record',
-            data: {"record_id": parseInt( rec_id)},
+            data: {"record_id": parseInt( rec_id), "user_id": parseInt(user_id) } ,
             success: function(response){
- 
-                
-                 location.assign('/records')
+ 				console.log(response)
+               
+  
+
+					setTimeout(function(){location.assign('/records')}, 1000);
            }
        });
 

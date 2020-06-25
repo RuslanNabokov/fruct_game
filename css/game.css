@@ -100,3 +100,8 @@ canvas{
   background-image : url('../img/img/bc.jpg') ;
     background-size: cover;
 }
+
+.navbar-toggler:not(:disabled):not(.disabled) {
+    cursor: pointer;
+    display: none;
+}

@@ -14,8 +14,8 @@ header("Location: /autorization");
 
 
 
-$name_gamer = 'evgen';  //$_SESSION['user_login'];
-$name_id = 'll';  //$_SESSION['user_id'];
+$name_gamer =$_SESSION['user_login'];
+$name_id = $_SESSION['user_id'];
 
 
 ?>
@@ -44,29 +44,19 @@ $name_id = 'll';  //$_SESSION['user_id'];
 
    (function() {
 
+
+
+
   window.name_gamer = '<?php  echo $name_gamer; ?>'; 
     window.id_gamer = '<?php  echo $name_id; ?>'; 
     var canvas = document.getElementById('myCanvas'),
             context = canvas.getContext('2d');
 
     // resize the canvas to fill browser window dynamically
-    window.addEventListener('resize', resizeCanvas, false);
 
-    function resizeCanvas() {
-            canvas.width = window.innerWidth - 40;
-            canvas.height = window.innerHeight - 50;
 
-            /**
-             * Your drawings need to be inside this function otherwise they will be reset when 
-             * you resize the browser window and the canvas goes will be cleared.
-             */
-            drawStuff(); 
-    }
-    resizeCanvas();
 
-    function drawStuff() {
-            // do your drawing stuff here
-    }
+ 
 })();
 
 

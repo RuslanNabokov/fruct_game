@@ -35,6 +35,9 @@
 */
 
 
+$name_gamer =$_SESSION['user_login'];
+$user_id = $_SESSION['user_id'];
+
 print <<< html
 <table class="table">
   <thead>
@@ -50,6 +53,9 @@ html
 ?>
 <?php
 
+
+
+if ($data){
 foreach ($data as $key => $value) {
 
     
@@ -57,18 +63,37 @@ $num =  $key + 1;
 $login =  $value['user_login'];
 $record =   $value['record'];
 $record_id =   $value['record_id'];
+
+
+
 print <<< html
     <tr>
     <th scope="row">$num</th>
     <td>$login</td>
     <td>$record</td>
-    <td class="del">Удалить </td>
+html;
+
+if ($name_gamer == $login){ 
+
+  echo "<td class='del'>Удалить </td>";
+}else{
+   echo " <td > </td>";
+}
+
+print <<< html
+
     <td  class= "hide"> $record_id </td>
     
     </tr> 
  
+ <script>
+ var user_id =  $user_id; 
+ </script>
+
 html;
-}
+}  
+}else{ }
+
 print <<< html
     </tbody> 
     </table>

@@ -8,6 +8,6 @@ class Controller_Del_record extends Controller
 			include 'application/models/model_record.php';
 			$model_rec =  new Model_Record();
 
-			$model_rec->del_record($_POST['record_id']);
+			$model_rec->del_record($_POST['record_id'], $_POST['user_id']);
 	}
 }

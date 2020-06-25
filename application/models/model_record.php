@@ -46,12 +46,12 @@ class Model_Record extends Model
 
 
 
-	public function del_record($record_id)
+	public function del_record($record_id,$user_id)
 	{	
 		
 
 //		 pg_query($dbconn3,"INSERT INTO public.records (user_id,record) values('".$_POST['user_id']."', '".$_POST['record']."')" );
-        pg_query($this->dbconn3,"DELETE   FROM public.records   WHERE  record_id = ".$record_id."");
+        pg_query($this->dbconn3,"DELETE   FROM public.records   WHERE  record_id = ".$record_id." AND  user_id = ".$user_id );
  
 // WHERE  user_id =  ".$_POST['user_id']."
 		

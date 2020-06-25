@@ -8,11 +8,26 @@ ctx = cvs.getContext("2d");
 
 var fructs = [{name: 'apple', img: 'img/img/apple_PNG12484.png'}, {name: 'limon', img: 'img/img/limon.png'}, {name: 'banan', img: 'img/img/banan.png', size: 40}, {name:'klubnika', img: 'img/img/fr.png', size: 40}, {name: "mango", img: 'img/img/mango1.png'}]  // массив с оюбьектами определяющими  фрукты
 
-alert(window.name_gamer )
+
 function randomc(max, min ){
 		return Math.floor(Math.random() * (max - min )) + min;
 	}
+window.addEventListener('resize', function(){
+	 
+	 cvs.width =  window.innerWidth;
+	 cvs.height = window.innerHeight;
+	  $('#myCanvas').width(cvs.width);
+	$('#myCanvas').height(cvs.height)
 
+width = $('#myCanvas').width()
+	height =  $('#myCanvas').height()
+	vec_score = new Victor(width - 50 , height - 50);
+
+
+
+
+
+}, false);
 var x  = 0
 class Fruct  { //  ##########################################################  класс генерирующий  игровые обьекты 
   constructor(typ) {   // конструктор экземпляра класса 
@@ -107,62 +122,22 @@ var  st_time = {}
 
 var pause = false;
 fruct_Search = '';
-time = 55;
+time = 2;
 score = 0;
 var time_bonus = randomc(1,time-7); // рандомно выбираем секунду на которой выпадет бонусный фрукт
 
 var flag_bonus = false;
-vec_score = new Victor(width -50 , height -50);  //  Используем модуль Victor  для работы с векторами
+vec_score = new Victor(width - 50 , height - 50);  //  Используем модуль Victor  для работы с векторами
 var timec // 
 var  timerv  = function(a){m = Math.floor(a/60);s =  a % 60; var s_t = setInterval(function(){
-if(pause ||  m + s == 0 ){
-	  if( m + s == 0){
-	  	clearInterval(this)
-	  	clearInterval(b_f)
-		clearInterval(minf)
-/*	  	  $.ajax({
-            type: "POST",
-            url: 'write_record',
-            data: $(this).serialize(),
-            success: function(response)
+if(pause ){
 
-            {
-            	console.log(response)
-                var jsonData = JSON.parse(response);
- 
-                // user is logged in successfully in the back-end
-                // let's redirect
-                if (jsonData.success == "1")
-                {
-                   alert(1)
-                }
-                else
-                {
-                    alert('Invalid Credentials!');
-                }
-           }
-       });
-*/
-
-
-
-//ajax запрос  для  внесения рекорда  
-
-	  }else{
-
-	  }
-}else{
+	}else{
 if(flag_bonus){s=+20; flag_bonus = false}
 
 
 
-if(m + s != 0){ if(s > 0){s--; timec = {'m':m, 's':s};
-}else{
-
-m--; s = 59;  timec = {'m':m, 's':s} }
-
-
- }else{ clearInterval(s_t); }  }}, 1000 )} // таймер 
+if(m + s != 0){ if(s > 0){s--; timec = {'m':m, 's':s} }else{m--; s = 59;  timec = {'m':m, 's':s} } }else{ clearInterval(s_t); }  }}, 1000 )} // таймер 
 
 timerv(time)
 
@@ -171,6 +146,7 @@ function pausef(){
 		st_time = {'min_size': min_size, "time":time,  "timec":timec}
 		clearInterval(b_f)
 		clearInterval(minf)
+		pause = true
 
 	}else{
 		min_size = st_time.min_size;
@@ -178,6 +154,7 @@ function pausef(){
 		var minf = setInterval(function(){min_size+=5;}, 1000);
 		var b_f = setInterval(b_fruct,  5000) 
 		var min_size = 0;
+		pause = false
 		draw()
 
 	}
@@ -193,7 +170,7 @@ return  ((( a - b  < r && a - b > 0)  || (b - a < r && b - a > 0 ) ))
 cvs.onclick = function(e) {  //  ##########################################################  Функция  обробатывает действия мыши
   x = e.clientX - cvs.getBoundingClientRect().left; // 
   y = e.clientY - cvs.getBoundingClientRect().top;
-	console.log(fr)
+
 	fr.forEach(function(item, i, arr) {
 
   	if  ( rX(item.positionX, x,  item.widthc) && rX(item.positionY, y,   item.widthc   ) ){
@@ -204,7 +181,7 @@ cvs.onclick = function(e) {  //  ###############################################
 			  fr[i] = new Fruct()
 
 		}else{
-			if (rX(width -5, x, 5) && rX(2, y, 5)){
+			if (rX(width -20, x, 30) && rX(2, y, 30)){
 				 pause = !pause;
 				 pausef()
 				 x = 0; y = 0;
@@ -241,7 +218,9 @@ noscore  = new Set();
 
 
 function draw() {
+if(pause ){
 
+}else{
 x++ // кадры
 
 score = (set.size * 10) - (noscore.size * 10);
@@ -264,13 +243,13 @@ if (item.obj != fruct_Search.obj){
 }else{	
 	set.add(item)
 	if (i > 5){              //  ЦЦ 
-		item.positionX = pos.x - 7 + i
-		item.positionY = pos.y + 8
+		item.positionX = pos.x - 10 + i
+		item.positionY = pos.y  - 5
 	
 
 	}else{
 	item.positionX = (pos.x + i) - 10
-	item.positionY = pos.y - 10
+	item.positionY = pos.y - 7
 	
 
 	} 
@@ -279,8 +258,8 @@ if (item.obj != fruct_Search.obj){
 	});
 
 // napolnenie karti 
-while  (fr < 70){
-	for (var i = 0 ; i <= 70; i++)
+while  (fr < ( window.innerWidth /7 ) ){
+	for (var i = 0 ; i <= (window.innerWidth   / 7); i++)
 	{ 
 				fr.push( new Fruct() )
 	}
@@ -330,7 +309,7 @@ fr.forEach(function(item, i, arr) {  // #######################  функция 
 
  ctx.fillStyle = "grey";
   ctx.font = "24px Verdana";
- ctx.fillText("Счет: " + score, 10, cvs.height - 20);
+ ctx.fillText("Счет: " + score, 40, cvs.height - 100);
 
  ctx.fillStyle = "blue";
   ctx.font = "24px Verdana";
@@ -353,7 +332,7 @@ if(flag_bonus){
 	time += 10
 }
 
-if (time != 0  && !pause){
+if (time != 0  ){
 	 requestAnimationFrame(draw);
 }else{
 	window.ende = new Date().getTime(); 
@@ -379,9 +358,8 @@ if (time != 0  && !pause){
 
 
 }
-
- setTimeout(draw, 1000)
 }
+ setTimeout(draw, 1000)} 
 menu()
 
 
