@@ -105,3 +105,8 @@ canvas{
     cursor: pointer;
     display: none;
 }
+
+.nav-link {
+    color: wheat;
+
+  }

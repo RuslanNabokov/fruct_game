@@ -33,13 +33,13 @@ $name_id = $_SESSION['user_id'];
 
 
 
-<link rel="stylesheet" href="css/game.css">
+
 
 <script src="lib/victor-1.1.0/index.js"></script>
 
 <script src =  "lib/CanvasInput-master/CanvasInput.min.js"></script>
 
-
+<link rel="stylesheet" href="css/game.css">
 <script type="text/javascript">
 
    (function() {

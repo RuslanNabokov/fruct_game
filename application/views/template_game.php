@@ -53,7 +53,16 @@ Modified by VitalySwipe
 
 
      }else{
+      echo ' <li class="nav-item"> <a class="nav-link " href="/records">Рекорды</a>  </li>';
+       if  (!empty($_SESSION['role']) and $_SESSION['role']) {
+            echo ' <li class="nav-item"> <a class="nav-link " href="/users">Пользователи</a>  </li>';
+       }else{
+
+       }
+     
+
       echo ' <li class="nav-item"> <a class="nav-link " href="/logout">Выйти</a>  </li>';
+
  }  ?>
 
       

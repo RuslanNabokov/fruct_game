@@ -14,7 +14,7 @@ $err = '';
     //хешируем пароль т.к. в базе именно хеш
         $password = trim($_POST['password']);
      // проверяем введенные данные
-    $query = "SELECT user_id, user_login
+    $query = "SELECT user_id, user_login,role
             FROM public.users
             WHERE user_login = '$login' AND user_password = '$password'
             LIMIT 1";
@@ -26,6 +26,7 @@ $err = '';
                 //ставим метку в сессии 
                 $_SESSION['user_id'] = $row['user_id'];
                 $_SESSION['user_login'] = $row['user_login'];
+                $_SESSION['role'] = $row['role'];
                 //ставим куки и время их хранения 10 дней
                 setcookie("CookieMy", $row['user_login'], time()+60*60*24*10);
                 
