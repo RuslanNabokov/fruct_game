@@ -12,12 +12,12 @@ var fructs = [{name: 'apple', img: 'img/img/apple_PNG12484.png'}, {name: 'limon'
 function randomc(max, min ){
 		return Math.floor(Math.random() * (max - min )) + min;
 	}
-window.addEventListener('resize', function(){
-	 
+function  res(argument) {
+	
 	 cvs.width =  window.innerWidth;
 	 cvs.height = window.innerHeight;
 	  $('#myCanvas').width(cvs.width);
-	$('#myCanvas').height(cvs.height)
+//	$('#myCanvas').height(cvs.height)
 
 width = $('#myCanvas').width()
 	height =  $('#myCanvas').height()
@@ -25,9 +25,16 @@ width = $('#myCanvas').width()
 
 
 
+}
+
+res()
 
 
-}, false);
+
+window.addEventListener('resize', res, false);
+
+
+
 var x  = 0
 class Fruct  { //  ##########################################################  класс генерирующий  игровые обьекты 
   constructor(typ) {   // конструктор экземпляра класса 

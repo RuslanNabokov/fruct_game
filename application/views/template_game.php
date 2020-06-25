@@ -74,7 +74,7 @@ Modified by VitalySwipe
 </nav>
 
 
-			<div id="page">
+			<div id="page" content="width=device-width, user-scalable=no" >
 
 					<div class="box">
 						<?php include 'application/views/'.$content_view; ?>
