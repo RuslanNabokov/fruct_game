@@ -10,16 +10,22 @@ class Route
 
 	static function start()
 	{
+		session_start();
 		// контроллер и действие по умолчанию
 		$controller_name = 'Main';
 		$action_name = 'index';
 		
-		$routes = explode('/', $_SERVER['REQUEST_URI']);
-
+		$routes = explode('/', $_SERVER['REQUEST_URI']); 
+		$routes_s =  ( $routes[1] !=  'autorization'  and $routes[1] !=  'registration' and    empty($_SESSION['user_login']))  ?  'autorization' :   $routes[1]  ;
 		// получаем имя контроллера
+	
 		if ( !empty($routes[1]) )
 		{	
-			$controller_name = $routes[1];
+
+			//print_r($routes_s); die();
+
+
+			$controller_name = $routes_s;
 		}
 		
 		// получаем имя экшена

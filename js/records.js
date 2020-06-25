@@ -17,3 +17,23 @@ $('.del').click(function (a) {
        });
 
 });
+
+$('select[@name=vibor] option:selected').val();
+
+$('.form-control').change(function(ar) {
+	 var role = $(this).val(); 
+	 var user_idd = $(this).parent('td').parent('tr').find('.hide').text();
+
+	  	  $.ajax({
+            type: "POST",
+            url: 'res_role',
+            data: {"role": role, "user_id": user_idd ,"user_id_owner": parseInt(user_id) } ,
+            success: function(response){
+ 			    
+  					console.log(response)
+
+			 //		setTimeout(function(){location.assign('/records')}, 1000);
+           }
+       });
+
+})
