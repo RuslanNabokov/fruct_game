@@ -122,7 +122,7 @@ var  st_time = {}
 
 var pause = false;
 fruct_Search = '';
-time = 2;
+time = 60;
 score = 0;
 var time_bonus = randomc(1,time-7); // рандомно выбираем секунду на которой выпадет бонусный фрукт
 
